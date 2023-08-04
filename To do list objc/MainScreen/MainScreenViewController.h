@@ -9,8 +9,20 @@
 #import "CustomCell.h"
 #import <Foundation/Foundation.h>
 #import "NoteModel.h"
+#import "MainScreenPresenter.h"
 
-@interface MainScreenViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
-    UICollectionView *_collectionView;
-}
+#import "InDetailCollectionViewController.h"
+#import "MainScreenPresenter.h"
+#import "CustomTextField.h"
+
+@protocol MainScreenPresenterDelegate;
+@interface MainScreenViewController : UIViewController<UICollectionViewDataSource,
+                                                        UICollectionViewDelegateFlowLayout,
+                                                        UITextFieldDelegate,
+                                                        MainScreenViewDelegate>
+
+@property (nonatomic, strong) UICollectionView *collectionView;
+
+@property MainScreenPresenter* presenter;
+
 @end

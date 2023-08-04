@@ -9,4 +9,6 @@
 
 @interface CustomCell : UICollectionViewCell
 
+- (void)setupNote:(NSString *)title noteText:(NSString*)noteText;
+
 @end

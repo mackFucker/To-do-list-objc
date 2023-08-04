@@ -27,15 +27,18 @@ UILabel *_secondLabel;
      _secondLabel = UILabel.new;
     
     _titleLabel.translatesAutoresizingMaskIntoConstraints = false;
-    _titleLabel.text = @"ALLAH";
     [self.contentView addSubview:_titleLabel];
     
     _secondLabel.translatesAutoresizingMaskIntoConstraints = false;
-    _secondLabel.text = @"UMER";
     [self.contentView addSubview:_secondLabel];
     
     self.contentView.backgroundColor = UIColor.lightGrayColor;
     self.contentView.layer.cornerRadius = 10.0;
+}
+
+- (void)setupNote:(NSString *)title noteText:(NSString*)noteText {
+    _titleLabel.text = title;
+    _secondLabel.text = noteText;
 }
 
 - (void)_setupLayout {

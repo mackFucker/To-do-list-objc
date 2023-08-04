@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F63CA6F2A7CD7BB0007BEB9 /* CustomeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F63CA6E2A7CD7BB0007BEB9 /* CustomeTextField.m */; };
 		8F79A4372A796E820060ECCE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F79A4362A796E820060ECCE /* AppDelegate.m */; };
 		8F79A43A2A796E820060ECCE /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F79A4392A796E820060ECCE /* SceneDelegate.m */; };
 		8F79A4422A796E830060ECCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F79A4412A796E830060ECCE /* Assets.xcassets */; };
 		8F79A4452A796E830060ECCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F79A4432A796E830060ECCE /* LaunchScreen.storyboard */; };
 		8F79A4482A796E830060ECCE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F79A4472A796E830060ECCE /* main.m */; };
 		8F79A4582A796FD90060ECCE /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F79A4512A796FD90060ECCE /* MainScreenViewController.m */; };
-		8F79A4592A796FD90060ECCE /* MainScreenViewPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F79A4522A796FD90060ECCE /* MainScreenViewPresenter.m */; };
+		8F79A4592A796FD90060ECCE /* MainScreenPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F79A4522A796FD90060ECCE /* MainScreenPresenter.m */; };
 		8F79A45A2A796FD90060ECCE /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F79A4542A796FD90060ECCE /* CustomCell.m */; };
 		8F79A45B2A796FD90060ECCE /* NoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F79A4572A796FD90060ECCE /* NoteModel.m */; };
 		8F79A4612A796FEA0060ECCE /* InDetailCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F79A45F2A796FEA0060ECCE /* InDetailCollectionViewController.m */; };
@@ -23,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8F63CA6D2A7CD7BB0007BEB9 /* CustomTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTextField.h; sourceTree = "<group>"; };
+		8F63CA6E2A7CD7BB0007BEB9 /* CustomeTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomeTextField.m; sourceTree = "<group>"; };
 		8F79A4322A796E820060ECCE /* To do list objc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "To do list objc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F79A4352A796E820060ECCE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8F79A4362A796E820060ECCE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -32,9 +35,9 @@
 		8F79A4442A796E830060ECCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8F79A4462A796E830060ECCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F79A4472A796E830060ECCE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		8F79A4502A796FD90060ECCE /* MainScreenViewPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewPresenter.h; sourceTree = "<group>"; };
+		8F79A4502A796FD90060ECCE /* MainScreenPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenPresenter.h; sourceTree = "<group>"; };
 		8F79A4512A796FD90060ECCE /* MainScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScreenViewController.m; sourceTree = "<group>"; };
-		8F79A4522A796FD90060ECCE /* MainScreenViewPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScreenViewPresenter.m; sourceTree = "<group>"; };
+		8F79A4522A796FD90060ECCE /* MainScreenPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScreenPresenter.m; sourceTree = "<group>"; };
 		8F79A4532A796FD90060ECCE /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
 		8F79A4542A796FD90060ECCE /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 		8F79A4552A796FD90060ECCE /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
@@ -61,6 +64,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F63CA702A7CD7C80007BEB9 /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				8F63CA6D2A7CD7BB0007BEB9 /* CustomTextField.h */,
+				8F63CA6E2A7CD7BB0007BEB9 /* CustomeTextField.m */,
+			);
+			path = CustomUI;
+			sourceTree = "<group>";
+		};
 		8F79A4292A796E820060ECCE = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +92,7 @@
 		8F79A4342A796E820060ECCE /* To do list objc */ = {
 			isa = PBXGroup;
 			children = (
+				8F63CA702A7CD7C80007BEB9 /* CustomUI */,
 				8F79A4662A7A3AE60060ECCE /* Categories */,
 				8F79A44F2A796F900060ECCE /* MainScreen */,
 				8F79A45C2A796FEA0060ECCE /* InDetailScreen */,
@@ -110,8 +123,8 @@
 				8F79A4512A796FD90060ECCE /* MainScreenViewController.m */,
 				8F79A4552A796FD90060ECCE /* CustomCell.h */,
 				8F79A4542A796FD90060ECCE /* CustomCell.m */,
-				8F79A4502A796FD90060ECCE /* MainScreenViewPresenter.h */,
-				8F79A4522A796FD90060ECCE /* MainScreenViewPresenter.m */,
+				8F79A4502A796FD90060ECCE /* MainScreenPresenter.h */,
+				8F79A4522A796FD90060ECCE /* MainScreenPresenter.m */,
 				8F79A4562A796FD90060ECCE /* NoteModel.h */,
 				8F79A4572A796FD90060ECCE /* NoteModel.m */,
 			);
@@ -219,12 +232,13 @@
 			files = (
 				8F79A4372A796E820060ECCE /* AppDelegate.m in Sources */,
 				8F79A4582A796FD90060ECCE /* MainScreenViewController.m in Sources */,
+				8F63CA6F2A7CD7BB0007BEB9 /* CustomeTextField.m in Sources */,
 				8F79A4692A7A3C630060ECCE /* UICollectionViewCell+.m in Sources */,
 				8F79A4612A796FEA0060ECCE /* InDetailCollectionViewController.m in Sources */,
 				8F79A46D2A7A74750060ECCE /* ImportanceCell.m in Sources */,
 				8F79A45A2A796FD90060ECCE /* CustomCell.m in Sources */,
 				8F79A4482A796E830060ECCE /* main.m in Sources */,
-				8F79A4592A796FD90060ECCE /* MainScreenViewPresenter.m in Sources */,
+				8F79A4592A796FD90060ECCE /* MainScreenPresenter.m in Sources */,
 				8F79A4652A79731A0060ECCE /* InDetaileNoteTextCell.m in Sources */,
 				8F79A43A2A796E820060ECCE /* SceneDelegate.m in Sources */,
 				8F79A45B2A796FD90060ECCE /* NoteModel.m in Sources */,

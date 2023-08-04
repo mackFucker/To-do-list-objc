@@ -6,15 +6,20 @@
 //
 
 #import "MainScreenViewController.h"
-#import "InDetailCollectionViewController.h"
 
 @implementation MainScreenViewController
 
 static NSString * const reuseIdentifier = @"cellIdentifier";
 UIButton *_addNoteButton;
+bool activePlusButton = true;
+
+CustomTextField *textFieldNoteName;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _presenter = [[MainScreenPresenter alloc] init];
+    [_presenter initWithView:self];
     
     [self _setupUI];
 }
@@ -24,8 +29,8 @@ UIButton *_addNoteButton;
     self.title = @"Notes";
         
     UICollectionViewFlowLayout *layout = UICollectionViewFlowLayout.new;
-    _collectionView = [[UICollectionView alloc] initWithFrame:self.view.frame
-                                         collectionViewLayout:layout];
+    _collectionView = [[UICollectionView alloc] initWithFrame: self.view.frame
+                                         collectionViewLayout: layout];
     
     [_collectionView setDataSource:self];
     [_collectionView setDelegate:self];
@@ -35,9 +40,10 @@ UIButton *_addNoteButton;
     
     _addNoteButton = UIButton.new;
     _addNoteButton.tintColor = UIColor.systemBlueColor;
-    UIImage *btnImage = [UIImage systemImageNamed:@"plus"];
+    
+    UIImage *btnImage = [UIImage systemImageNamed: @"plus"];
     [_addNoteButton setImage: btnImage forState:UIControlStateNormal];
-    [_addNoteButton addTarget:self action:@selector(addNote) forControlEvents:UIControlEventTouchUpInside];
+    [_addNoteButton addTarget:self action:@selector(addNote) forControlEvents: UIControlEventTouchUpInside];
 
     UIBarButtonItem *addNoteButtonBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView: _addNoteButton];
     self.navigationItem.rightBarButtonItem = addNoteButtonBarButtonItem;
@@ -46,13 +52,39 @@ UIButton *_addNoteButton;
 }
 
 -(void)addNote {
+    if (activePlusButton) {
+        activePlusButton = false;
+
+        textFieldNoteName = [[CustomTextField alloc] initWithFrame:CGRectMake(0, 0, 200, 30) delegate:self];
+
+        [self.view addSubview:textFieldNoteName];
+    }
+    else {
+        NSLog(@"%@", @"non active");
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    NSLog(@"%@", textFieldNoteName.noteName.text);
+    [self->_presenter addNote: textFieldNoteName.getText];
     
+    [textFieldNoteName removeFromSuperview];
+
+    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow: [_presenter getNotesData].count - 1
+                                                   inSection:0];
+
+    [self.collectionView performBatchUpdates:^{
+        [self.collectionView insertItemsAtIndexPaths:@[newIndexPath]];
+    } completion:nil];
+    activePlusButton = true;
+    return YES;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section {
     
-    return 10;
+    return [_presenter getNotesData].count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -60,6 +92,10 @@ UIButton *_addNoteButton;
     
     CustomCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: reuseIdentifier
                                                                  forIndexPath:indexPath];
+    NoteModel *noteData = _presenter.getNotesData[indexPath.row];
+    
+    [cell setupNote:noteData.title noteText:noteData.noteText];
+
     return cell;
 }
 
