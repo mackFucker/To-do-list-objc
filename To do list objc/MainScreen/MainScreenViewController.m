@@ -10,8 +10,9 @@
 @implementation MainScreenViewController
 
 static NSString * const reuseIdentifier = @"cellIdentifier";
-UIButton *_addNoteButton;
+//UIButton *_addNoteButton;
 bool activePlusButton = true;
+bool isOpen = false;
 
 CustomTextField *textFieldNoteName;
 
@@ -24,10 +25,29 @@ CustomTextField *textFieldNoteName;
     [self _setupUI];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    isOpen = false;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.2 * NSEC_PER_SEC),
+                   dispatch_get_main_queue(), ^{
+        isOpen = true;
+        
+        [self->_collectionView performBatchUpdates:^{
+            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, self->_collectionView.numberOfSections)];
+            [self->_collectionView reloadSections:indexSet];
+        } completion:nil];
+    });
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    isOpen = false;
+}
+
 - (void)_setupUI {
     
     self.title = @"Notes";
-        
+    
     UICollectionViewFlowLayout *layout = UICollectionViewFlowLayout.new;
     _collectionView = [[UICollectionView alloc] initWithFrame: self.view.frame
                                          collectionViewLayout: layout];
@@ -38,31 +58,33 @@ CustomTextField *textFieldNoteName;
     [_collectionView registerClass:[CustomCell class] forCellWithReuseIdentifier: reuseIdentifier];
     [_collectionView setBackgroundColor:[UIColor systemBackgroundColor]];
     
-    _addNoteButton = UIButton.new;
-    _addNoteButton.tintColor = UIColor.systemBlueColor;
+//    _addNoteButton = UIButton.new;
+//    _addNoteButton.tintColor = UIColor.systemBlueColor;
     
     UIImage *btnImage = [UIImage systemImageNamed: @"plus"];
-    [_addNoteButton setImage: btnImage forState:UIControlStateNormal];
-    [_addNoteButton addTarget:self action:@selector(addNote) forControlEvents: UIControlEventTouchUpInside];
-
+//    [_addNoteButton setImage: btnImage forState:UIControlStateNormal];
+//    [_addNoteButton addTarget:self action:@selector(addNote) forControlEvents: UIControlEventTouchUpInside];
+//    
     UIBarButtonItem *addNoteButtonBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView: _addNoteButton];
     self.navigationItem.rightBarButtonItem = addNoteButtonBarButtonItem;
     
     [self.view addSubview:_collectionView];
 }
 
--(void)addNote {
-    if (activePlusButton) {
-        activePlusButton = false;
-
-        textFieldNoteName = [[CustomTextField alloc] initWithFrame:CGRectMake(0, 0, 200, 30) delegate:self];
-
-        [self.view addSubview:textFieldNoteName];
-    }
-    else {
-        NSLog(@"%@", @"non active");
-    }
-}
+//-(void)addNote {
+//    if (activePlusButton) {
+        
+//    -----------------------запуск анимации -----------------------
+//        activePlusButton = false;
+//        
+//        textFieldNoteName = [[CustomTextField alloc] initWithFrame:CGRectMake(0, 0, 200, 30) delegate:self];
+//        
+//        [self.view addSubview:textFieldNoteName];
+//    }
+//    else {
+//        NSLog(@"%@", @"non active");
+//    }
+//}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
@@ -70,10 +92,10 @@ CustomTextField *textFieldNoteName;
     [self->_presenter addNote: textFieldNoteName.getText];
     
     [textFieldNoteName removeFromSuperview];
-
+    
     NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow: [_presenter getNotesData].count - 1
                                                    inSection:0];
-
+    
     [self.collectionView performBatchUpdates:^{
         [self.collectionView insertItemsAtIndexPaths:@[newIndexPath]];
     } completion:nil];
@@ -83,8 +105,12 @@ CustomTextField *textFieldNoteName;
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section {
-    
-    return [_presenter getNotesData].count;
+    if (isOpen) {
+        return [_presenter getNotesData].count;
+    }
+    else {
+        return 0;
+    }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -95,7 +121,7 @@ CustomTextField *textFieldNoteName;
     NoteModel *noteData = _presenter.getNotesData[indexPath.row];
     
     [cell setupNote:noteData.title noteText:noteData.noteText];
-
+    
     return cell;
 }
 
