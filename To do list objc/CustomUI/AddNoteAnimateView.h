@@ -7,11 +7,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomTextField : UIView
+@interface AddNoteAnimateView : UIView
 
 @property(nonatomic, strong) UITextField *noteName;
+
 - (instancetype)initWithFrame:(CGRect)frame delegate:(id<UITextFieldDelegate>)delegate;
--(NSString*)getText;
+- (NSString*)getText;
+- (void)setupUIСreatureNotActivate;
 
 @end
 

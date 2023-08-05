@@ -10,15 +10,16 @@
 @implementation MainScreenViewController
 
 static NSString * const reuseIdentifier = @"cellIdentifier";
-//UIButton *_addNoteButton;
+
 bool activePlusButton = true;
 bool isOpen = false;
+CGFloat screenWidth;
 
-CustomTextField *textFieldNoteName;
+AddNoteAnimateView *addNoteView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    screenWidth = [UIScreen mainScreen].bounds.size.width;
     _presenter = [[MainScreenPresenter alloc] init];
     [_presenter initWithView:self];
     
@@ -58,40 +59,21 @@ CustomTextField *textFieldNoteName;
     [_collectionView registerClass:[CustomCell class] forCellWithReuseIdentifier: reuseIdentifier];
     [_collectionView setBackgroundColor:[UIColor systemBackgroundColor]];
     
-//    _addNoteButton = UIButton.new;
-//    _addNoteButton.tintColor = UIColor.systemBlueColor;
+    addNoteView = [[AddNoteAnimateView alloc] initWithFrame:CGRectMake(screenWidth - 110, 60, 100, 40)
+                                                   delegate:self];
     
-    UIImage *btnImage = [UIImage systemImageNamed: @"plus"];
-//    [_addNoteButton setImage: btnImage forState:UIControlStateNormal];
-//    [_addNoteButton addTarget:self action:@selector(addNote) forControlEvents: UIControlEventTouchUpInside];
-//    
-    UIBarButtonItem *addNoteButtonBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView: _addNoteButton];
-    self.navigationItem.rightBarButtonItem = addNoteButtonBarButtonItem;
-    
+    UIWindowScene *windowScene = (UIWindowScene *)[UIApplication sharedApplication].connectedScenes.allObjects.firstObject;
+    UIWindow *window = windowScene.windows.firstObject;
+    [window addSubview:addNoteView];
+
     [self.view addSubview:_collectionView];
 }
 
-//-(void)addNote {
-//    if (activePlusButton) {
-        
-//    -----------------------запуск анимации -----------------------
-//        activePlusButton = false;
-//        
-//        textFieldNoteName = [[CustomTextField alloc] initWithFrame:CGRectMake(0, 0, 200, 30) delegate:self];
-//        
-//        [self.view addSubview:textFieldNoteName];
-//    }
-//    else {
-//        NSLog(@"%@", @"non active");
-//    }
-//}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
-    NSLog(@"%@", textFieldNoteName.noteName.text);
-    [self->_presenter addNote: textFieldNoteName.getText];
     
-    [textFieldNoteName removeFromSuperview];
+    [self->_presenter addNote: addNoteView.getText];
+    [addNoteView setupUIСreatureNotActivate];
     
     NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow: [_presenter getNotesData].count - 1
                                                    inSection:0];
@@ -128,7 +110,6 @@ CustomTextField *textFieldNoteName;
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     return CGSizeMake(screenWidth / 2.3, screenWidth / 2.7);
 }

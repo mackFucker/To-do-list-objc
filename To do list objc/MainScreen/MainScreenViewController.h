@@ -13,13 +13,13 @@
 
 #import "InDetailCollectionViewController.h"
 #import "MainScreenPresenter.h"
-#import "CustomTextField.h"
+#import "AddNoteAnimateView.h"
 
 @protocol MainScreenPresenterDelegate;
 @interface MainScreenViewController : UIViewController<UICollectionViewDataSource,
                                                         UICollectionViewDelegateFlowLayout,
-                                                        UITextFieldDelegate,
-                                                        MainScreenViewDelegate>
+                                                        MainScreenViewDelegate,
+                                                        UITextFieldDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
