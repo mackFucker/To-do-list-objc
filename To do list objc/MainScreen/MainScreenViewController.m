@@ -10,15 +10,19 @@
 @implementation MainScreenViewController
 
 static NSString * const reuseIdentifier = @"cellIdentifier";
-
 bool activePlusButton = true;
 bool isOpen = false;
+AddNoteAnimateView *addNoteView;
 CGFloat screenWidth;
 
-AddNoteAnimateView *addNoteView;
+UIWindowScene *windowScene;
+UIWindow *window;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    windowScene = (UIWindowScene *)[UIApplication sharedApplication].connectedScenes.allObjects.firstObject;
+    window = windowScene.windows.firstObject;
+    
     screenWidth = [UIScreen mainScreen].bounds.size.width;
     _presenter = [[MainScreenPresenter alloc] init];
     [_presenter initWithView:self];
@@ -28,6 +32,7 @@ AddNoteAnimateView *addNoteView;
 
 - (void)viewWillAppear:(BOOL)animated {
     isOpen = false;
+    [window addSubview:addNoteView];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.2 * NSEC_PER_SEC),
                    dispatch_get_main_queue(), ^{
@@ -41,7 +46,7 @@ AddNoteAnimateView *addNoteView;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    
+    [addNoteView removeFromSuperview];
     isOpen = false;
 }
 
@@ -62,11 +67,11 @@ AddNoteAnimateView *addNoteView;
     addNoteView = [[AddNoteAnimateView alloc] initWithFrame:CGRectMake(screenWidth - 110, 60, 100, 40)
                                                    delegate:self];
     
-    UIWindowScene *windowScene = (UIWindowScene *)[UIApplication sharedApplication].connectedScenes.allObjects.firstObject;
-    UIWindow *window = windowScene.windows.firstObject;
     [window addSubview:addNoteView];
 
+
     [self.view addSubview:_collectionView];
+//    [self.view addSubview:addNoteView];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

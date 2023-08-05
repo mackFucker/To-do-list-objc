@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F1DD9612A7E77F500F1746E /* CustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DD9602A7E77F500F1746E /* CustomNavigationBar.m */; };
 		8F63CA6F2A7CD7BB0007BEB9 /* AddNoteAnimateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F63CA6E2A7CD7BB0007BEB9 /* AddNoteAnimateView.m */; };
 		8F79A4372A796E820060ECCE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F79A4362A796E820060ECCE /* AppDelegate.m */; };
 		8F79A43A2A796E820060ECCE /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F79A4392A796E820060ECCE /* SceneDelegate.m */; };
@@ -24,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8F1DD95F2A7E77F500F1746E /* CustomNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomNavigationBar.h; sourceTree = "<group>"; };
+		8F1DD9602A7E77F500F1746E /* CustomNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationBar.m; sourceTree = "<group>"; };
 		8F63CA6D2A7CD7BB0007BEB9 /* AddNoteAnimateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddNoteAnimateView.h; sourceTree = "<group>"; };
 		8F63CA6E2A7CD7BB0007BEB9 /* AddNoteAnimateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddNoteAnimateView.m; sourceTree = "<group>"; };
 		8F79A4322A796E820060ECCE /* To do list objc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "To do list objc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +72,8 @@
 			children = (
 				8F63CA6D2A7CD7BB0007BEB9 /* AddNoteAnimateView.h */,
 				8F63CA6E2A7CD7BB0007BEB9 /* AddNoteAnimateView.m */,
+				8F1DD95F2A7E77F500F1746E /* CustomNavigationBar.h */,
+				8F1DD9602A7E77F500F1746E /* CustomNavigationBar.m */,
 			);
 			path = CustomUI;
 			sourceTree = "<group>";
@@ -234,6 +239,7 @@
 				8F79A4582A796FD90060ECCE /* MainScreenViewController.m in Sources */,
 				8F63CA6F2A7CD7BB0007BEB9 /* AddNoteAnimateView.m in Sources */,
 				8F79A4692A7A3C630060ECCE /* UICollectionViewCell+.m in Sources */,
+				8F1DD9612A7E77F500F1746E /* CustomNavigationBar.m in Sources */,
 				8F79A4612A796FEA0060ECCE /* InDetailCollectionViewController.m in Sources */,
 				8F79A46D2A7A74750060ECCE /* ImportanceCell.m in Sources */,
 				8F79A45A2A796FD90060ECCE /* CustomCell.m in Sources */,
