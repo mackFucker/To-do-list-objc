@@ -15,13 +15,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NoteModel : NSObject
 
+@property (nonatomic, strong) NSNumber *noteID;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *noteText;
-- (instancetype)initWithTitle:(NSString *)title;
+
+- (instancetype)init:(NSNumber *)noteID title:(NSString *)title;
 
 @end
 
 NS_ASSUME_NONNULL_END
 
-// QTWelcome.m
 

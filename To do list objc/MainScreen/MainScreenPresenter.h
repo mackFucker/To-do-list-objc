@@ -19,12 +19,12 @@
 @protocol MainScreenPresenterDelegate <NSObject>
 
 @property(nonatomic,strong) id< MainScreenViewDelegate > view;
-@property(nonatomic,strong) NSMutableArray *notes;
 
--(void)initWithView: (id <MainScreenViewDelegate>) view;
-- (void)addNote:(NSString *)title;
+- (instancetype)initWithView: (id <MainScreenViewDelegate>) view;
+
+- (void)addNote:(NSNumber *)noteID title:(NSString *)title;
+
 - (NSMutableArray *)getNotesData;
-
 
 @end
 

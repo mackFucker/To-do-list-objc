@@ -9,25 +9,26 @@
 
 @implementation MainScreenPresenter
 
-@synthesize notes;
 @synthesize view;
+
+- (instancetype)initWithView:(id<MainScreenViewDelegate>)view {
+    if(self) {
+        self.view = view;
+        self.view.presenter = self;
+        _notes = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
 
 NSMutableArray<NoteModel *> *_notes;
 
-- (void)addNote:(NSString *)title {
-    NoteModel *newNote = [[NoteModel alloc] initWithTitle:title];
+- (void)addNote:(NSNumber*)noteID title:(NSString *)title {
+    NoteModel *newNote = [[NoteModel alloc] init:noteID title:title];
     [_notes addObject:newNote];
-    NSLog(@"%lu", (unsigned long)_notes.count);
 }
 
 - (NSMutableArray *)getNotesData {
     return _notes;
-}
-
-- (void)initWithView:(id<MainScreenViewDelegate>)view { 
-    self.view = view;
-    self.view.presenter = self;
-    _notes = [[NSMutableArray alloc] init];
 }
 
 @end

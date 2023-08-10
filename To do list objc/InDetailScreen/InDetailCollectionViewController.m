@@ -10,15 +10,31 @@
 
 @implementation InDetailCollectionViewController
 
+
+
 static NSString * const reuseIdentifier = @"Cell";
 static NSString * const reuseIdentifier2 = @"Cell2";
 
 bool _isOpen = false;
 
 UIButton *_doneButton;
+NoteModel *_data;
+
+- (instancetype)initWithNoteData:(NoteModel *)data {
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        _data = data;
+//        _presenter = [[InDetailPresenter alloc] initWithView:self];
+        self.title = data.title;
+    }
+    return self;
+}
+
 
 - (void)viewDidLoad {
-    [super viewDidLoad];    
+    [super viewDidLoad];
+    
+    
       UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
       [self.view addGestureRecognizer:tapGesture];
     
@@ -118,6 +134,7 @@ UIButton *_doneButton;
                 case 0:
                     cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier
                                                                      forIndexPath:indexPath];
+                    [(InDetaileNoteTextCell *)cell setup:_data];
                     break;
             }
             break;

@@ -25,7 +25,6 @@ UITextView *_text;
     _text = UITextView.new;
     _text.backgroundColor = UIColor.lightGrayColor;
     
-    _text.text = @"UMER";
     [self.contentView addSubview:_text];
     _text.layer.cornerRadius = 10.0;
 }
@@ -33,5 +32,10 @@ UITextView *_text;
 - (void)_setupLayout {
     [_text setFrame: self.contentView.bounds];
 }
+
+- (void)setup:(NoteModel*)data {
+    _text.text = data.noteText;
+}
+
 
 @end

@@ -9,9 +9,10 @@
 
 @implementation NoteModel
 
-- (instancetype)initWithTitle:(NSString *)title {
+- (instancetype)init:(NSNumber *)noteID title:(NSString *)title {
     self = [super init];
     if (self) {
+        _noteID = noteID;
         _title = title;
         _noteText = @"";
     }

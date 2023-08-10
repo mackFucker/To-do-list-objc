@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		8F1DD9612A7E77F500F1746E /* CustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DD9602A7E77F500F1746E /* CustomNavigationBar.m */; };
+		8F520F6C2A837B6E008514D9 /* CoreDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F520F6B2A837B6E008514D9 /* CoreDataService.m */; };
+		8F520F6F2A83DF40008514D9 /* InDetailPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F520F6E2A83DF40008514D9 /* InDetailPresenter.m */; };
+		8F520F732A84CFCC008514D9 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F520F712A84CFCC008514D9 /* Model.xcdatamodeld */; };
 		8F63CA6F2A7CD7BB0007BEB9 /* AddNoteAnimateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F63CA6E2A7CD7BB0007BEB9 /* AddNoteAnimateView.m */; };
 		8F79A4372A796E820060ECCE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F79A4362A796E820060ECCE /* AppDelegate.m */; };
 		8F79A43A2A796E820060ECCE /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F79A4392A796E820060ECCE /* SceneDelegate.m */; };
@@ -27,6 +30,11 @@
 /* Begin PBXFileReference section */
 		8F1DD95F2A7E77F500F1746E /* CustomNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomNavigationBar.h; sourceTree = "<group>"; };
 		8F1DD9602A7E77F500F1746E /* CustomNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationBar.m; sourceTree = "<group>"; };
+		8F520F6A2A837B6E008514D9 /* CoreDataService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataService.h; sourceTree = "<group>"; };
+		8F520F6B2A837B6E008514D9 /* CoreDataService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataService.m; sourceTree = "<group>"; };
+		8F520F6D2A83DF3F008514D9 /* InDetailPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InDetailPresenter.h; sourceTree = "<group>"; };
+		8F520F6E2A83DF40008514D9 /* InDetailPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InDetailPresenter.m; sourceTree = "<group>"; };
+		8F520F722A84CFCC008514D9 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		8F63CA6D2A7CD7BB0007BEB9 /* AddNoteAnimateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddNoteAnimateView.h; sourceTree = "<group>"; };
 		8F63CA6E2A7CD7BB0007BEB9 /* AddNoteAnimateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddNoteAnimateView.m; sourceTree = "<group>"; };
 		8F79A4322A796E820060ECCE /* To do list objc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "To do list objc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +75,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F520F692A837B1C008514D9 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				8F520F702A84CF77008514D9 /* CoreDataService */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		8F520F702A84CF77008514D9 /* CoreDataService */ = {
+			isa = PBXGroup;
+			children = (
+				8F520F6A2A837B6E008514D9 /* CoreDataService.h */,
+				8F520F6B2A837B6E008514D9 /* CoreDataService.m */,
+				8F520F712A84CFCC008514D9 /* Model.xcdatamodeld */,
+			);
+			path = CoreDataService;
+			sourceTree = "<group>";
+		};
 		8F63CA702A7CD7C80007BEB9 /* CustomUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +123,7 @@
 		8F79A4342A796E820060ECCE /* To do list objc */ = {
 			isa = PBXGroup;
 			children = (
+				8F520F692A837B1C008514D9 /* Service */,
 				8F63CA702A7CD7C80007BEB9 /* CustomUI */,
 				8F79A4662A7A3AE60060ECCE /* Categories */,
 				8F79A44F2A796F900060ECCE /* MainScreen */,
@@ -142,6 +169,8 @@
 				8F79A46A2A7A40E60060ECCE /* InDetailCells */,
 				8F79A45D2A796FEA0060ECCE /* InDetailCollectionViewController.h */,
 				8F79A45F2A796FEA0060ECCE /* InDetailCollectionViewController.m */,
+				8F520F6D2A83DF3F008514D9 /* InDetailPresenter.h */,
+				8F520F6E2A83DF40008514D9 /* InDetailPresenter.m */,
 			);
 			path = InDetailScreen;
 			sourceTree = "<group>";
@@ -197,6 +226,7 @@
 				TargetAttributes = {
 					8F79A4312A796E820060ECCE = {
 						CreatedOnToolsVersion = 15.0;
+						LastSwiftMigration = 1500;
 					};
 				};
 			};
@@ -245,8 +275,11 @@
 				8F79A45A2A796FD90060ECCE /* CustomCell.m in Sources */,
 				8F79A4482A796E830060ECCE /* main.m in Sources */,
 				8F79A4592A796FD90060ECCE /* MainScreenPresenter.m in Sources */,
+				8F520F6F2A83DF40008514D9 /* InDetailPresenter.m in Sources */,
+				8F520F732A84CFCC008514D9 /* Model.xcdatamodeld in Sources */,
 				8F79A4652A79731A0060ECCE /* InDetaileNoteTextCell.m in Sources */,
 				8F79A43A2A796E820060ECCE /* SceneDelegate.m in Sources */,
+				8F520F6C2A837B6E008514D9 /* CoreDataService.m in Sources */,
 				8F79A45B2A796FD90060ECCE /* NoteModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,6 +419,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3Q2GL54W3S;
@@ -403,6 +437,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.To-do-list-objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -412,6 +448,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3Q2GL54W3S;
@@ -429,6 +466,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.To-do-list-objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -455,6 +493,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8F520F712A84CFCC008514D9 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8F520F722A84CFCC008514D9 /* Model.xcdatamodel */,
+			);
+			currentVersion = 8F520F722A84CFCC008514D9 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8F79A42A2A796E820060ECCE /* Project object */;
 }

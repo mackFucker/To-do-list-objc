@@ -11,7 +11,7 @@
 
 static NSString * const reuseIdentifier = @"cellIdentifier";
 bool activePlusButton = true;
-bool isOpen = false;
+
 AddNoteAnimateView *addNoteView;
 CGFloat screenWidth;
 
@@ -24,30 +24,18 @@ UIWindow *window;
     window = windowScene.windows.firstObject;
     
     screenWidth = [UIScreen mainScreen].bounds.size.width;
-    _presenter = [[MainScreenPresenter alloc] init];
-    [_presenter initWithView:self];
+    _presenter = [[MainScreenPresenter alloc] initWithView:self];
+//    [_presenter initWithView:self];
     
     [self _setupUI];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    isOpen = false;
     [window addSubview:addNoteView];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.2 * NSEC_PER_SEC),
-                   dispatch_get_main_queue(), ^{
-        isOpen = true;
-        
-        [self->_collectionView performBatchUpdates:^{
-            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, self->_collectionView.numberOfSections)];
-            [self->_collectionView reloadSections:indexSet];
-        } completion:nil];
-    });
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [addNoteView removeFromSuperview];
-    isOpen = false;
 }
 
 - (void)_setupUI {
@@ -68,16 +56,17 @@ UIWindow *window;
                                                    delegate:self];
     
     [window addSubview:addNoteView];
-
-
+    
+    
     [self.view addSubview:_collectionView];
-//    [self.view addSubview:addNoteView];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     
-    [self->_presenter addNote: addNoteView.getText];
+    NSNumber *noteID = [NSNumber numberWithUnsignedInteger:[_presenter getNotesData].count];
+    [_presenter addNote: noteID title:addNoteView.getText];
+    
     [addNoteView setupUIСreatureNotActivate];
     
     NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow: [_presenter getNotesData].count - 1
@@ -92,12 +81,8 @@ UIWindow *window;
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section {
-    if (isOpen) {
-        return [_presenter getNotesData].count;
-    }
-    else {
-        return 0;
-    }
+    
+    return [_presenter getNotesData].count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -131,8 +116,8 @@ UIWindow *window;
 
 - (void)collectionView:(UICollectionView *)collectionView
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    UIViewController *vc = [[InDetailCollectionViewController alloc] init];
+    NoteModel *data = [_presenter getNotesData][indexPath.row];
+    UIViewController *vc = [[InDetailCollectionViewController alloc] initWithNoteData: data];
     [self.navigationController pushViewController:vc animated: true];
 }
 

@@ -6,9 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NoteModel.h"
 
 @interface InDetaileNoteTextCell : UICollectionViewCell
 
+- (void)setup:(NoteModel*)data;
 
 @end
 
