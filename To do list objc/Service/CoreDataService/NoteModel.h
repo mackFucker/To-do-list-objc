@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 @class NoteModel;
 
@@ -13,11 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Object interfaces
 
-@interface NoteModel : NSObject
+@interface NoteModel : NSManagedObject
 
 @property (nonatomic, strong) NSNumber *noteID;
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSString *noteText;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *noteText;
 
 - (instancetype)init:(NSNumber *)noteID title:(NSString *)title;
 

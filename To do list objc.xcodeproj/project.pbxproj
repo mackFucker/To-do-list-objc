@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8F1DD9612A7E77F500F1746E /* CustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DD9602A7E77F500F1746E /* CustomNavigationBar.m */; };
-		8F520F6C2A837B6E008514D9 /* CoreDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F520F6B2A837B6E008514D9 /* CoreDataService.m */; };
+		8F520F6C2A837B6E008514D9 /* CoreDataServiceRepositoryImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F520F6B2A837B6E008514D9 /* CoreDataServiceRepositoryImpl.m */; };
 		8F520F6F2A83DF40008514D9 /* InDetailPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F520F6E2A83DF40008514D9 /* InDetailPresenter.m */; };
 		8F520F732A84CFCC008514D9 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F520F712A84CFCC008514D9 /* Model.xcdatamodeld */; };
 		8F63CA6F2A7CD7BB0007BEB9 /* AddNoteAnimateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F63CA6E2A7CD7BB0007BEB9 /* AddNoteAnimateView.m */; };
@@ -30,8 +30,8 @@
 /* Begin PBXFileReference section */
 		8F1DD95F2A7E77F500F1746E /* CustomNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomNavigationBar.h; sourceTree = "<group>"; };
 		8F1DD9602A7E77F500F1746E /* CustomNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationBar.m; sourceTree = "<group>"; };
-		8F520F6A2A837B6E008514D9 /* CoreDataService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataService.h; sourceTree = "<group>"; };
-		8F520F6B2A837B6E008514D9 /* CoreDataService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataService.m; sourceTree = "<group>"; };
+		8F520F6A2A837B6E008514D9 /* CoreDataServiceRepositoryImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataServiceRepositoryImpl.h; sourceTree = "<group>"; };
+		8F520F6B2A837B6E008514D9 /* CoreDataServiceRepositoryImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataServiceRepositoryImpl.m; sourceTree = "<group>"; };
 		8F520F6D2A83DF3F008514D9 /* InDetailPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InDetailPresenter.h; sourceTree = "<group>"; };
 		8F520F6E2A83DF40008514D9 /* InDetailPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InDetailPresenter.m; sourceTree = "<group>"; };
 		8F520F722A84CFCC008514D9 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -86,8 +86,10 @@
 		8F520F702A84CF77008514D9 /* CoreDataService */ = {
 			isa = PBXGroup;
 			children = (
-				8F520F6A2A837B6E008514D9 /* CoreDataService.h */,
-				8F520F6B2A837B6E008514D9 /* CoreDataService.m */,
+				8F520F6A2A837B6E008514D9 /* CoreDataServiceRepositoryImpl.h */,
+				8F520F6B2A837B6E008514D9 /* CoreDataServiceRepositoryImpl.m */,
+				8F79A4562A796FD90060ECCE /* NoteModel.h */,
+				8F79A4572A796FD90060ECCE /* NoteModel.m */,
 				8F520F712A84CFCC008514D9 /* Model.xcdatamodeld */,
 			);
 			path = CoreDataService;
@@ -157,8 +159,6 @@
 				8F79A4542A796FD90060ECCE /* CustomCell.m */,
 				8F79A4502A796FD90060ECCE /* MainScreenPresenter.h */,
 				8F79A4522A796FD90060ECCE /* MainScreenPresenter.m */,
-				8F79A4562A796FD90060ECCE /* NoteModel.h */,
-				8F79A4572A796FD90060ECCE /* NoteModel.m */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
@@ -279,7 +279,7 @@
 				8F520F732A84CFCC008514D9 /* Model.xcdatamodeld in Sources */,
 				8F79A4652A79731A0060ECCE /* InDetaileNoteTextCell.m in Sources */,
 				8F79A43A2A796E820060ECCE /* SceneDelegate.m in Sources */,
-				8F520F6C2A837B6E008514D9 /* CoreDataService.m in Sources */,
+				8F520F6C2A837B6E008514D9 /* CoreDataServiceRepositoryImpl.m in Sources */,
 				8F79A45B2A796FD90060ECCE /* NoteModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,12 +9,16 @@
 
 @implementation NoteModel
 
+@dynamic noteID;
+@dynamic title;
+@dynamic noteText;
+
 - (instancetype)init:(NSNumber *)noteID title:(NSString *)title {
     self = [super init];
     if (self) {
-        _noteID = noteID;
-        _title = title;
-        _noteText = @"";
+        self.noteID = noteID;
+        self.title = title;
+        self.noteText = @"";
     }
     return self;
 }
