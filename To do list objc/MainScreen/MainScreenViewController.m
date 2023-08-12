@@ -25,7 +25,6 @@ UIWindow *window;
     
     screenWidth = [UIScreen mainScreen].bounds.size.width;
     _presenter = [[MainScreenPresenter alloc] initWithView:self];
-//    [_presenter initWithView:self];
     
     [self _setupUI];
 }
@@ -64,7 +63,7 @@ UIWindow *window;
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     
-    NSNumber *noteID = [NSNumber numberWithUnsignedInteger:[_presenter getNotesData].count];
+    NSNumber *noteID = [NSNumber numberWithUnsignedInteger:[_presenter getNotesData].count + 1];
     [_presenter addNote: noteID title:addNoteView.getText];
     
     [addNoteView setupUIСreatureNotActivate];
@@ -90,9 +89,10 @@ UIWindow *window;
     
     CustomCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: reuseIdentifier
                                                                  forIndexPath:indexPath];
-    NoteModel *noteData = _presenter.getNotesData[indexPath.row];
     
-    [cell setupNote:noteData.title noteText:noteData.noteText];
+    NoteModel *noteData = [_presenter getNote:@(indexPath.row)];
+    NSLog(@"%@", noteData.title);
+    [cell setupNote:noteData];
     
     return cell;
 }

@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "AppDelegate.h"
+#import "NoteModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,8 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)addNote:(NSNumber *)noteID title:(NSString *)title;
 - (NSMutableArray *)getNotesData;
+- (NoteModel *)getNote:(NSNumber *)index;
 - (void)editNote: (NSNumber *)index;
 - (void)deleteNote: (NSNumber *)index;
++ (instancetype)sharedInstance;
 
 @end
 

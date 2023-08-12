@@ -34,7 +34,7 @@ UITextView *_text;
 }
 
 - (void)setup:(NoteModel*)data {
-    _text.text = data.noteText;
+    _text.text = data.text;
 }
 
 

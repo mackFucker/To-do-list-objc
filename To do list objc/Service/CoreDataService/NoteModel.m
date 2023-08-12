@@ -9,16 +9,19 @@
 
 @implementation NoteModel
 
-@dynamic noteID;
-@dynamic title;
-@dynamic noteText;
+NSNumber *noteID;
+NSString *title;
+NSString *text;
 
-- (instancetype)init:(NSNumber *)noteID title:(NSString *)title {
+- (instancetype)initWithNoteID:(NSNumber *)noteID
+               title:(NSString *)title
+                text:(NSString *)text {
+    
     self = [super init];
     if (self) {
         self.noteID = noteID;
         self.title = title;
-        self.noteText = @"";
+        self.text = text;
     }
     return self;
 }

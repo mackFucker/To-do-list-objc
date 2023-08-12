@@ -6,9 +6,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NoteModel.h"
 
 @interface CustomCell : UICollectionViewCell
 
-- (void)setupNote:(NSString *)title noteText:(NSString*)noteText;
+- (void)setupNote:(NoteModel *)data;
 
 @end

@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CoreDataServiceRepositoryImpl.h"
 #import "NoteModel.h"
 
 @protocol MainScreenPresenterDelegate;
@@ -23,8 +24,8 @@
 - (instancetype)initWithView: (id <MainScreenViewDelegate>) view;
 
 - (void)addNote:(NSNumber *)noteID title:(NSString *)title;
-
 - (NSMutableArray *)getNotesData;
+- (NoteModel *)getNote:(NSNumber*)index;
 
 @end
 

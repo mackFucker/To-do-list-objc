@@ -36,9 +36,9 @@ UILabel *_secondLabel;
     self.contentView.layer.cornerRadius = 10.0;
 }
 
-- (void)setupNote:(NSString *)title noteText:(NSString*)noteText {
-    _titleLabel.text = title;
-    _secondLabel.text = noteText;
+- (void)setupNote:(NoteModel *)data{
+    _titleLabel.text = data.title;
+    _secondLabel.text = data.text;
 }
 
 - (void)_setupLayout {
