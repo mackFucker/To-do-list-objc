@@ -24,7 +24,7 @@ NoteModel *_data;
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
         _data = data;
-//        _presenter = [[InDetailPresenter alloc] initWithView:self];
+        _presenter = [[InDetailPresenter alloc] initWithView:self];
         self.title = data.title;
     }
     return self;

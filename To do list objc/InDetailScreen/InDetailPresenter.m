@@ -11,13 +11,17 @@
 
 @synthesize view;
 
-- (void)editNote:(NSNumber*)index text:(NSString*)text {
-    //    _notes[index.intValue].noteText = text;
+static id<CoreDataServiceRepository> coreData;
+
+- (void)editNote:(NoteModel*)data {
+    [coreData editNote:data];
 }
 
 - (instancetype)initWithView: (id<InDetailViewDelegate>)view {
     if(self) {
         self.view = view;
+        coreData = [CoreDataServiceRepositoryImpl sharedInstance];
+
     }
     return self;
 }

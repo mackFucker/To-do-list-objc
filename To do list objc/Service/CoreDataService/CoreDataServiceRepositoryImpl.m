@@ -34,6 +34,11 @@ NSMutableArray<NSManagedObject *> *_notesData;
     [note setValue:title forKey:@"title"];
     [note setValue:@"" forKey:@"text"];
     
+    NSError *error = nil;
+    if (![context save:&error]) {
+        NSLog(@"Could not save. %@, %@", error, error.userInfo);
+    }
+    
     [_notesData addObject:note];
 }
 
@@ -49,12 +54,27 @@ NSMutableArray<NSManagedObject *> *_notesData;
                                          text:[noteData valueForKey:@"text"]];
     return note;
 }
-- (void)editNote:(NSNumber *)index {
+- (void)editNote:(NoteModel *)data {
+    NSManagedObjectContext *context = [self managedObjectContext];
     
+    [_notesData[data.noteID.intValue] setValue:data.text forKey:@"text"];
+
+    NSError *error = nil;
+    if (![context save:&error]) {
+        NSLog(@"Could not save. %@, %@", error, error.userInfo);
+    }
 }
 
 - (void)deleteNote: (NSNumber *)index {
+    NSManagedObjectContext *context = [self managedObjectContext];
     
+    [context deleteObject:_notesData[index.intValue]];
+    
+    NSError *error = nil;
+    if (![context save:&error]) {
+        NSLog(@"Could not save. %@, %@", error, error.userInfo);
+    }
+    [_notesData removeObjectAtIndex:index.intValue];
 }
 
 - (NSManagedObjectContext *)managedObjectContext {

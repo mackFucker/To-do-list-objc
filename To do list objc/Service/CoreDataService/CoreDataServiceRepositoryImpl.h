@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addNote:(NSNumber *)noteID title:(NSString *)title;
 - (NSMutableArray *)getNotesData;
 - (NoteModel *)getNote:(NSNumber *)index;
-- (void)editNote: (NSNumber *)index;
+- (void)editNote:(NoteModel *)data;
 - (void)deleteNote: (NSNumber *)index;
 + (instancetype)sharedInstance;
 

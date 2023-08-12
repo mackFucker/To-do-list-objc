@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CoreDataServiceRepositoryImpl.h"
 
 @protocol InDetailPresenterDelegate;
 
@@ -19,9 +20,10 @@
 
 @property(nonatomic,strong) id<InDetailViewDelegate > view;
 
-- (void)editNote:(NSNumber*)index text:(NSString*)text;
-
 - (instancetype)initWithView:(id<InDetailViewDelegate>)view;
+
+- (void)editNote:(NoteModel *)data;
+
 
 @end
 
