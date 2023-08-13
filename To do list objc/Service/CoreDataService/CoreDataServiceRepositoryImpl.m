@@ -12,11 +12,11 @@
 NSMutableArray<NSManagedObject *> *_notesData;
 
 + (instancetype)sharedInstance {
-    _notesData = [[NSMutableArray alloc] init ];
     
     static CoreDataServiceRepositoryImpl *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        _notesData = [[NSMutableArray alloc] init ];
         sharedInstance = [[CoreDataServiceRepositoryImpl alloc] init];
     });
     return sharedInstance;

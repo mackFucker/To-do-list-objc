@@ -116,6 +116,7 @@ UIWindow *window;
 
 - (void)collectionView:(UICollectionView *)collectionView
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%ld", (long)indexPath.row);
     NoteModel *data = [_presenter getNote:@(indexPath.row)];
     UIViewController *vc = [[InDetailCollectionViewController alloc] initWithNoteData: data];
     [self.navigationController pushViewController:vc animated: true];

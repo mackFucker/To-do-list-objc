@@ -32,7 +32,6 @@ id<CoreDataServiceRepository> coreData;
 }
 
 - (NoteModel *)getNote:(NSNumber*)index {
-    NSLog(@"%@", index);
     return [coreData getNote:index];
 }
 
