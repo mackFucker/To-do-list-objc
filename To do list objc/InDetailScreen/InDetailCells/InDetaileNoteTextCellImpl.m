@@ -5,9 +5,9 @@
 //  Created by дэвид Кихтенко on 01.08.2023.
 //
 
-#import "InDetaileNoteTextCell.h"
+#import "InDetaileNoteTextCellImpl.h"
 
-@implementation InDetaileNoteTextCell
+@implementation InDetaileNoteTextCellImpl
 
 UITextView *_text;
 
@@ -35,7 +35,11 @@ UITextView *_text;
 
 - (void)setup:(NoteModel*)data {
     _text.text = data.text;
+    
 }
 
+- (NSString*)returnNoteText {
+    return _text.text;
+}
 
 @end

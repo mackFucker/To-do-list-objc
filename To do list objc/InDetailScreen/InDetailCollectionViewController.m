@@ -6,11 +6,9 @@
 //
 
 #import "InDetailCollectionViewController.h"
-#import "ImportanceCell.h"
+#import "ImportanceCellImpl.h"
 
 @implementation InDetailCollectionViewController
-
-
 
 static NSString * const reuseIdentifier = @"Cell";
 static NSString * const reuseIdentifier2 = @"Cell2";
@@ -19,6 +17,8 @@ bool _isOpen = false;
 
 UIButton *_doneButton;
 NoteModel *_data;
+
+InDetaileNoteTextCellImpl *noteTextCell;
 
 - (instancetype)initWithNoteData:(NoteModel *)data {
     self = [super initWithNibName:nil bundle:nil];
@@ -35,8 +35,8 @@ NoteModel *_data;
     [super viewDidLoad];
     
     
-      UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-      [self.view addGestureRecognizer:tapGesture];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    [self.view addGestureRecognizer:tapGesture];
     
     [self _setupUI];
 }
@@ -70,9 +70,9 @@ NoteModel *_data;
     [_collectionView setDataSource:self];
     [_collectionView setDelegate:self];
     
-    [_collectionView registerClass:[InDetaileNoteTextCell class] forCellWithReuseIdentifier: reuseIdentifier];
-    [_collectionView registerClass:[ImportanceCell class] forCellWithReuseIdentifier: reuseIdentifier2];
-
+    [_collectionView registerClass:[InDetaileNoteTextCellImpl class] forCellWithReuseIdentifier: reuseIdentifier];
+    [_collectionView registerClass:[ImportanceCellImpl class] forCellWithReuseIdentifier: reuseIdentifier2];
+    
     [_collectionView setBackgroundColor:[UIColor systemBackgroundColor]];
     [self.view addSubview:_collectionView];
     
@@ -90,6 +90,12 @@ NoteModel *_data;
         [_doneButton setAlpha:0.0];
     } completion:^(BOOL finished) {
         if (finished) {
+            NoteModel *note = [[NoteModel alloc] initWithNoteID: _data.noteID
+                                                          title:@"(nonnull NSString *)"
+                                                           text:[noteTextCell returnNoteText]];
+            
+            
+            [self->_presenter editNote: note];
             [self.view endEditing:YES];
             [self hideKeyboard];
         }
@@ -132,9 +138,10 @@ NoteModel *_data;
         case 0:
             switch (indexPath.row) {
                 case 0:
-                    cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier
+                    noteTextCell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier
                                                                      forIndexPath:indexPath];
-                    [(InDetaileNoteTextCell *)cell setup:_data];
+                    [noteTextCell setup:_data];
+                    cell = noteTextCell;
                     break;
             }
             break;

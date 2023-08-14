@@ -34,5 +34,12 @@ id<CoreDataServiceRepository> coreData;
 - (NoteModel *)getNote:(NSNumber*)index {
     return [coreData getNote:index];
 }
+- (void)receivingFromPersistenStore {
+    [coreData receivingFromPersistenStore];
+}
+
+- (void)setDelegate:(id<NotifyAboutChanges>)delegate {
+    [coreData setDelegate:delegate];
+}
 
 @end

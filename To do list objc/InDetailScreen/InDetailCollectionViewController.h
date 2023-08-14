@@ -6,12 +6,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "InDetaileNoteTextCell.h"
+#import "InDetaileNoteTextCellImpl.h"
 #import "NoteModel.h"
 #import "InDetailPresenter.h"
 
 
-@interface InDetailCollectionViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
+@interface InDetailCollectionViewController : UIViewController<UICollectionViewDataSource,
+UICollectionViewDelegateFlowLayout,
+InDetailViewDelegate> {
+    
     UICollectionView *_collectionView;
 }
 - (instancetype)initWithNoteData:(NoteModel *)data;

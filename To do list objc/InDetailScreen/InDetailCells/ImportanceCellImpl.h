@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ImportanceCell : UICollectionViewCell
+@interface ImportanceCellImpl : UICollectionViewCell
 
 @end
 

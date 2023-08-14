@@ -26,6 +26,8 @@
 - (void)addNote:(NSNumber *)noteID title:(NSString *)title;
 - (NSMutableArray *)getNotesData;
 - (NoteModel *)getNote:(NSNumber*)index;
+- (void)receivingFromPersistenStore;
+- (void)setDelegate:(id<NotifyAboutChanges>)delegate;
 
 @end
 

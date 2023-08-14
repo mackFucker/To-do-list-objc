@@ -5,9 +5,9 @@
 //  Created by дэвид Кихтенко on 02.08.2023.
 //
 
-#import "ImportanceCell.h"
+#import "ImportanceCellImpl.h"
 
-@implementation ImportanceCell
+@implementation ImportanceCellImpl
 
 UILabel *_label;
 

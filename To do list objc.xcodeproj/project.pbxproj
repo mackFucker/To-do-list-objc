@@ -21,9 +21,9 @@
 		8F79A45A2A796FD90060ECCE /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F79A4542A796FD90060ECCE /* CustomCell.m */; };
 		8F79A45B2A796FD90060ECCE /* NoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F79A4572A796FD90060ECCE /* NoteModel.m */; };
 		8F79A4612A796FEA0060ECCE /* InDetailCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F79A45F2A796FEA0060ECCE /* InDetailCollectionViewController.m */; };
-		8F79A4652A79731A0060ECCE /* InDetaileNoteTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F79A4642A79731A0060ECCE /* InDetaileNoteTextCell.m */; };
+		8F79A4652A79731A0060ECCE /* InDetaileNoteTextCellImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F79A4642A79731A0060ECCE /* InDetaileNoteTextCellImpl.m */; };
 		8F79A4692A7A3C630060ECCE /* UICollectionViewCell+.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F79A4682A7A3C630060ECCE /* UICollectionViewCell+.m */; };
-		8F79A46D2A7A74750060ECCE /* ImportanceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F79A46C2A7A74750060ECCE /* ImportanceCell.m */; };
+		8F79A46D2A7A74750060ECCE /* ImportanceCellImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F79A46C2A7A74750060ECCE /* ImportanceCellImpl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,12 +53,12 @@
 		8F79A4572A796FD90060ECCE /* NoteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteModel.m; sourceTree = "<group>"; };
 		8F79A45D2A796FEA0060ECCE /* InDetailCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InDetailCollectionViewController.h; sourceTree = "<group>"; };
 		8F79A45F2A796FEA0060ECCE /* InDetailCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InDetailCollectionViewController.m; sourceTree = "<group>"; };
-		8F79A4632A79731A0060ECCE /* InDetaileNoteTextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InDetaileNoteTextCell.h; sourceTree = "<group>"; };
-		8F79A4642A79731A0060ECCE /* InDetaileNoteTextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InDetaileNoteTextCell.m; sourceTree = "<group>"; };
+		8F79A4632A79731A0060ECCE /* InDetaileNoteTextCellImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InDetaileNoteTextCellImpl.h; sourceTree = "<group>"; };
+		8F79A4642A79731A0060ECCE /* InDetaileNoteTextCellImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InDetaileNoteTextCellImpl.m; sourceTree = "<group>"; };
 		8F79A4672A7A3B3F0060ECCE /* UICollectionViewCell+.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewCell+.h"; sourceTree = "<group>"; };
 		8F79A4682A7A3C630060ECCE /* UICollectionViewCell+.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionViewCell+.m"; sourceTree = "<group>"; };
-		8F79A46B2A7A74750060ECCE /* ImportanceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImportanceCell.h; sourceTree = "<group>"; };
-		8F79A46C2A7A74750060ECCE /* ImportanceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImportanceCell.m; sourceTree = "<group>"; };
+		8F79A46B2A7A74750060ECCE /* ImportanceCellImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImportanceCellImpl.h; sourceTree = "<group>"; };
+		8F79A46C2A7A74750060ECCE /* ImportanceCellImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImportanceCellImpl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,10 +182,10 @@
 		8F79A46A2A7A40E60060ECCE /* InDetailCells */ = {
 			isa = PBXGroup;
 			children = (
-				8F79A4632A79731A0060ECCE /* InDetaileNoteTextCell.h */,
-				8F79A4642A79731A0060ECCE /* InDetaileNoteTextCell.m */,
-				8F79A46B2A7A74750060ECCE /* ImportanceCell.h */,
-				8F79A46C2A7A74750060ECCE /* ImportanceCell.m */,
+				8F79A4632A79731A0060ECCE /* InDetaileNoteTextCellImpl.h */,
+				8F79A4642A79731A0060ECCE /* InDetaileNoteTextCellImpl.m */,
+				8F79A46B2A7A74750060ECCE /* ImportanceCellImpl.h */,
+				8F79A46C2A7A74750060ECCE /* ImportanceCellImpl.m */,
 			);
 			path = InDetailCells;
 			sourceTree = "<group>";
@@ -265,13 +265,13 @@
 				8F63CA6F2A7CD7BB0007BEB9 /* AddNoteAnimateView.m in Sources */,
 				8F79A4692A7A3C630060ECCE /* UICollectionViewCell+.m in Sources */,
 				8F79A4612A796FEA0060ECCE /* InDetailCollectionViewController.m in Sources */,
-				8F79A46D2A7A74750060ECCE /* ImportanceCell.m in Sources */,
+				8F79A46D2A7A74750060ECCE /* ImportanceCellImpl.m in Sources */,
 				8F79A45A2A796FD90060ECCE /* CustomCell.m in Sources */,
 				8F79A4482A796E830060ECCE /* main.m in Sources */,
 				8F79A4592A796FD90060ECCE /* MainScreenPresenter.m in Sources */,
 				8F520F6F2A83DF40008514D9 /* InDetailPresenter.m in Sources */,
 				8F520F732A84CFCC008514D9 /* Model.xcdatamodeld in Sources */,
-				8F79A4652A79731A0060ECCE /* InDetaileNoteTextCell.m in Sources */,
+				8F79A4652A79731A0060ECCE /* InDetaileNoteTextCellImpl.m in Sources */,
 				8F79A43A2A796E820060ECCE /* SceneDelegate.m in Sources */,
 				8F520F6C2A837B6E008514D9 /* CoreDataServiceRepositoryImpl.m in Sources */,
 				8F79A45B2A796FD90060ECCE /* NoteModel.m in Sources */,

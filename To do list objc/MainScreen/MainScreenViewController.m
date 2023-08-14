@@ -27,10 +27,19 @@ UIWindow *window;
     _presenter = [[MainScreenPresenter alloc] initWithView:self];
     
     [self _setupUI];
+    [_presenter setDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        [_presenter receivingFromPersistenStore];
+    });
+    
     [window addSubview:addNoteView];
+    //    [_collectionView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -51,7 +60,7 @@ UIWindow *window;
     [_collectionView registerClass:[CustomCell class] forCellWithReuseIdentifier: reuseIdentifier];
     [_collectionView setBackgroundColor:[UIColor systemBackgroundColor]];
     
-    addNoteView = [[AddNoteAnimateView alloc] initWithFrame:CGRectMake(screenWidth - 110, 60, 100, 40)
+    addNoteView = [[AddNoteAnimateView alloc] initWithFrame:CGRectMake(screenWidth - 110, 45, 100, 40)
                                                    delegate:self];
     
     [window addSubview:addNoteView];
@@ -68,12 +77,12 @@ UIWindow *window;
     
     [addNoteView setupUIСreatureNotActivate];
     
-    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow: [_presenter getNotesData].count - 1
-                                                   inSection:0];
+    //    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow: [_presenter getNotesData].count - 1
+    //                                                   inSection:0];
     
-    [self.collectionView performBatchUpdates:^{
-        [self.collectionView insertItemsAtIndexPaths:@[newIndexPath]];
-    } completion:nil];
+//        [self.collectionView performBatchUpdates:^{
+//            [self.collectionView insertItemsAtIndexPaths:@[newIndexPath]];
+//        } completion:nil];
     activePlusButton = true;
     return YES;
 }
@@ -91,7 +100,6 @@ UIWindow *window;
                                                                  forIndexPath:indexPath];
     
     NoteModel *noteData = [_presenter getNote:@(indexPath.row)];
-    NSLog(@"%@", noteData.title);
     [cell setupNote:noteData];
     
     return cell;
@@ -116,10 +124,29 @@ UIWindow *window;
 
 - (void)collectionView:(UICollectionView *)collectionView
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%ld", (long)indexPath.row);
+    
     NoteModel *data = [_presenter getNote:@(indexPath.row)];
     UIViewController *vc = [[InDetailCollectionViewController alloc] initWithNoteData: data];
     [self.navigationController pushViewController:vc animated: true];
+}
+
+- (void)notify:(NSNumber*)index type:(TypeofChanges)type {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow: index.intValue
+                                                inSection:0];
+    switch (type) {
+        case TypeofChangesDelete:
+                [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+            break;
+        case TypeofChangesAdd:
+                [self.collectionView insertItemsAtIndexPaths:@[indexPath]];
+            break;
+        case TypeofChangesEdit:
+                [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+            break;
+        case TypeofChangesToggle:
+                [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+            break;
+    }
 }
 
 @end

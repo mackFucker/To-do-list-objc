@@ -9,21 +9,21 @@
 
 @implementation InDetailPresenter
 
+id<CoreDataServiceRepository> _coreData;
+
 @synthesize view;
 
-static id<CoreDataServiceRepository> coreData;
-
-- (void)editNote:(NoteModel*)data {
-    [coreData editNote:data];
-}
-
-- (instancetype)initWithView: (id<InDetailViewDelegate>)view {
+- (instancetype)initWithView:(id<InDetailViewDelegate>)view {
     if(self) {
         self.view = view;
-        coreData = [CoreDataServiceRepositoryImpl sharedInstance];
-
+        self.view.presenter = self;
+        _coreData = [CoreDataServiceRepositoryImpl sharedInstance];
     }
     return self;
+}
+
+- (void)editNote:(NoteModel*)data {
+    [_coreData editNote:data];
 }
 
 @end

@@ -12,13 +12,29 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, TypeofChanges) {
+    TypeofChangesDelete,
+    TypeofChangesAdd,
+    TypeofChangesEdit,
+    TypeofChangesToggle
+};
+
+@protocol NotifyAboutChanges <NSObject>
+
+- (void) notify:(NSNumber*)index type:(TypeofChanges)type;
+
+@end
+
 @protocol CoreDataServiceRepository <NSObject>
 
 - (void)addNote:(NSNumber *)noteID title:(NSString *)title;
 - (NSMutableArray *)getNotesData;
 - (NoteModel *)getNote:(NSNumber *)index;
 - (void)editNote:(NoteModel *)data;
-- (void)deleteNote: (NSNumber *)index;
+- (void)deleteNote:(NSNumber *)index;
+- (void)receivingFromPersistenStore;
+- (void)setDelegate:(id<NotifyAboutChanges>)delegate;
+
 + (instancetype)sharedInstance;
 
 @end

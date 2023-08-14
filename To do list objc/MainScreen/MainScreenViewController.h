@@ -15,11 +15,11 @@
 #import "MainScreenPresenter.h"
 #import "AddNoteAnimateView.h"
 
-@protocol MainScreenPresenterDelegate;
 @interface MainScreenViewController : UIViewController<UICollectionViewDataSource,
-                                                        UICollectionViewDelegateFlowLayout,
-                                                        MainScreenViewDelegate,
-                                                        UITextFieldDelegate>
+UICollectionViewDelegateFlowLayout,
+MainScreenViewDelegate,
+NotifyAboutChanges,
+UITextFieldDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
