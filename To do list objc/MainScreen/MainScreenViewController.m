@@ -80,9 +80,9 @@ UIWindow *window;
     //    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow: [_presenter getNotesData].count - 1
     //                                                   inSection:0];
     
-//        [self.collectionView performBatchUpdates:^{
-//            [self.collectionView insertItemsAtIndexPaths:@[newIndexPath]];
-//        } completion:nil];
+    //        [self.collectionView performBatchUpdates:^{
+    //            [self.collectionView insertItemsAtIndexPaths:@[newIndexPath]];
+    //        } completion:nil];
     activePlusButton = true;
     return YES;
 }
@@ -135,16 +135,16 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                                                 inSection:0];
     switch (type) {
         case TypeofChangesDelete:
-                [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+            [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
             break;
         case TypeofChangesAdd:
-                [self.collectionView insertItemsAtIndexPaths:@[indexPath]];
+            [self.collectionView insertItemsAtIndexPaths:@[indexPath]];
             break;
         case TypeofChangesEdit:
-                [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+            [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
             break;
         case TypeofChangesToggle:
-                [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+            [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
             break;
     }
 }
