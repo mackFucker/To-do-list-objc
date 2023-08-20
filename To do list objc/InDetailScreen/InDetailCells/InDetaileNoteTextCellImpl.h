@@ -10,7 +10,7 @@
 
 @interface InDetaileNoteTextCellImpl : UICollectionViewCell
 
-- (void)setup:(NoteModel*)data;
+- (void)setup:(NoteModel*)data deledate:(id<UITextViewDelegate>)delegate;
 - (NSString *)returnNoteText;
 
 @end

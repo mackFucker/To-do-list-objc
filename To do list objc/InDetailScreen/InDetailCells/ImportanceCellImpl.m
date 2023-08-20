@@ -23,10 +23,11 @@ UILabel *_label;
 
 - (void)_setupUI {
     _label = UILabel.new;
+    self.contentView.backgroundColor = UIColor.lightGrayColor;
+    self.contentView.backgroundColor = [self.contentView.backgroundColor colorWithAlphaComponent:0.3];
     _label.translatesAutoresizingMaskIntoConstraints = false;
     _label.text = @"importance";
     
-    self.contentView.backgroundColor = UIColor.lightGrayColor;
     self.contentView.layer.cornerRadius = 10;
     [self.contentView addSubview:_label];
     

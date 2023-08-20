@@ -24,6 +24,7 @@ UITextView *_text;
 - (void)_setupUI {
     _text = UITextView.new;
     _text.backgroundColor = UIColor.lightGrayColor;
+    _text.backgroundColor = [_text.backgroundColor colorWithAlphaComponent:0.3];
     
     [self.contentView addSubview:_text];
     _text.layer.cornerRadius = 10.0;
@@ -33,9 +34,9 @@ UITextView *_text;
     [_text setFrame: self.contentView.bounds];
 }
 
-- (void)setup:(NoteModel*)data {
+- (void)setup:(NoteModel*)data deledate:(id<UITextViewDelegate>)delegate {
     _text.text = data.text;
-    
+    [_text setDelegate:delegate];
 }
 
 - (NSString*)returnNoteText {

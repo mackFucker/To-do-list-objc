@@ -3,4 +3,102 @@
    uuid = "E1C8D327-A392-408D-9206-41DBFB295AB0"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AD9753CF-C7FC-40A9-B74B-810FC0F2A947"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "To do list objc/MainScreen/CustomCell.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "-setupNote:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "527C850F-751B-4DBB-9699-3CCDFC0900C9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "To do list objc/Service/CoreDataService/CoreDataServiceRepositoryImpl.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "-editNote:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F1DC12E5-0305-4F58-ACD3-38A1E438E2D3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "To do list objc/Service/CoreDataService/CoreDataServiceRepositoryImpl.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "-editNote:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F1DC12E5-0305-4F58-ACD3-38A1E438E2D3 - c089d730ce87bdbe"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[CoreDataServiceRepositoryImpl editNote:]"
+                  moduleName = "To do list objc"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/devidkihtenko/Desktop/%F0%9F%A5%BA%F0%9F%A5%BA%F0%9F%A5%BA/To%20do%20list%20objc/To%20do%20list%20objc/Service/CoreDataService/CoreDataServiceRepositoryImpl.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "296">
+               </Location>
+               <Location
+                  uuid = "F1DC12E5-0305-4F58-ACD3-38A1E438E2D3 - c089d730ce87bddf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[CoreDataServiceRepositoryImpl editNote:]"
+                  moduleName = "To do list objc"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/devidkihtenko/Desktop/%F0%9F%A5%BA%F0%9F%A5%BA%F0%9F%A5%BA/To%20do%20list%20objc/To%20do%20list%20objc/Service/CoreDataService/CoreDataServiceRepositoryImpl.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "304">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2F3A3E5F-7743-4D06-B44F-365E5AD9B1EF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "To do list objc/MainScreen/MainScreenViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

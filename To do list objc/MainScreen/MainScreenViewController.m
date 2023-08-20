@@ -39,7 +39,6 @@ UIWindow *window;
     });
     
     [window addSubview:addNoteView];
-    //    [_collectionView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -60,11 +59,10 @@ UIWindow *window;
     [_collectionView registerClass:[CustomCell class] forCellWithReuseIdentifier: reuseIdentifier];
     [_collectionView setBackgroundColor:[UIColor systemBackgroundColor]];
     
-    addNoteView = [[AddNoteAnimateView alloc] initWithFrame:CGRectMake(screenWidth - 110, 45, 100, 40)
+    addNoteView = [[AddNoteAnimateView alloc] initWithFrame:CGRectMake(screenWidth - 110, 52, 100, 40)
                                                    delegate:self];
     
     [window addSubview:addNoteView];
-    
     
     [self.view addSubview:_collectionView];
 }
@@ -72,17 +70,9 @@ UIWindow *window;
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     
-    NSNumber *noteID = [NSNumber numberWithUnsignedInteger:[_presenter getNotesData].count + 1];
-    [_presenter addNote: noteID title:addNoteView.getText];
+    [_presenter addNote :addNoteView.getText];
     
     [addNoteView setupUIСreatureNotActivate];
-    
-    //    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow: [_presenter getNotesData].count - 1
-    //                                                   inSection:0];
-    
-    //        [self.collectionView performBatchUpdates:^{
-    //            [self.collectionView insertItemsAtIndexPaths:@[newIndexPath]];
-    //        } completion:nil];
     activePlusButton = true;
     return YES;
 }
@@ -101,7 +91,6 @@ UIWindow *window;
     
     NoteModel *noteData = [_presenter getNote:@(indexPath.row)];
     [cell setupNote:noteData];
-    
     return cell;
 }
 
@@ -141,6 +130,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
             [self.collectionView insertItemsAtIndexPaths:@[indexPath]];
             break;
         case TypeofChangesEdit:
+//            [_collectionView reloadData];
+//            FIXME: при reloadData все какого то хуя норм 3
             [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
             break;
         case TypeofChangesToggle:

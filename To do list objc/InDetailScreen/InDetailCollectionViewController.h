@@ -13,6 +13,8 @@
 
 @interface InDetailCollectionViewController : UIViewController<UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout,
+UITextViewDelegate,
+UIGestureRecognizerDelegate,
 InDetailViewDelegate> {
     
     UICollectionView *_collectionView;

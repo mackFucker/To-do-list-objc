@@ -10,7 +10,12 @@
 @implementation CustomCell
 
 UILabel *_titleLabel;
-UILabel *_secondLabel;
+UITextView *_noteTextView;
+UILabel *_dateLabel;
+
+UIStackView *_stack;
+
+NSTextAttachment *imageAttachment;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -23,33 +28,57 @@ UILabel *_secondLabel;
 }
 
 - (void)_setupUI {
-     _titleLabel = UILabel.new;
-     _secondLabel = UILabel.new;
-    
-    _titleLabel.translatesAutoresizingMaskIntoConstraints = false;
-    [self.contentView addSubview:_titleLabel];
-    
-    _secondLabel.translatesAutoresizingMaskIntoConstraints = false;
-    [self.contentView addSubview:_secondLabel];
-    
-    self.contentView.backgroundColor = UIColor.lightGrayColor;
     self.contentView.layer.cornerRadius = 10.0;
+    
+    imageAttachment = [[NSTextAttachment alloc] init];
+    imageAttachment.image = [[UIImage systemImageNamed:@"calendar"]
+                             imageWithTintColor:[UIColor tintColor]];
+    
+    _titleLabel = UILabel.new;
+    _noteTextView = UITextView.new;
+    _dateLabel = UILabel.new;
+    _stack = UIStackView.new;
+    
+    _titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    
+    _noteTextView.translatesAutoresizingMaskIntoConstraints = false;
+    _noteTextView.editable = false;
+    _noteTextView.selectable = false;
+    _noteTextView.pagingEnabled = false;
+    _noteTextView.userInteractionEnabled = false;
+    _noteTextView.backgroundColor = UIColor.lightGrayColor;
+    _noteTextView.backgroundColor = [_noteTextView.backgroundColor colorWithAlphaComponent:0.3];
+    [self.contentView addSubview:_noteTextView];
+    _noteTextView.layer.cornerRadius = 10;
+        
+    _stack.axis = UILayoutConstraintAxisVertical;
+    _stack.translatesAutoresizingMaskIntoConstraints = false;
+    
+    [_stack addArrangedSubview:_titleLabel];
+    [_stack addArrangedSubview:_dateLabel];
+
+    [self.contentView addSubview:_stack];
 }
 
-- (void)setupNote:(NoteModel *)data{
+- (void)setupNote:(NoteModel *)data {
     _titleLabel.text = data.title;
-    _secondLabel.text = data.text;
+    _noteTextView.text = data.text;
+    
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"11.03.23 "];
+    [attributedString appendAttributedString:[NSAttributedString attributedStringWithAttachment:imageAttachment]];
+    _dateLabel.attributedText = attributedString;
 }
 
 - (void)_setupLayout {
     [NSLayoutConstraint activateConstraints:@[
-        [_titleLabel.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:8],
-        [_titleLabel.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:8],
-        [_titleLabel.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor constant:-8],
-       
-        [_secondLabel.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:8],
-        [_secondLabel.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor constant:-8],
-        [_secondLabel.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor constant:-8]
+        [_noteTextView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:8],
+        [_noteTextView.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:8],
+        [_noteTextView.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor constant:-8],
+        [_noteTextView.bottomAnchor constraintEqualToAnchor:_stack.topAnchor constant: -8],
+
+        [_stack.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:8],
+        [_stack.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor constant:-8],
+        [_stack.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor constant:-8]
     ]];
 }
 

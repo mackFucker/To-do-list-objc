@@ -30,19 +30,27 @@ InDetaileNoteTextCellImpl *noteTextCell;
     return self;
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-    [self.view addGestureRecognizer:tapGesture];
-    
     [self _setupUI];
+    
+    UISwipeGestureRecognizer *swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(doneButtonTappedHiddenAndSave)];
+//    UITapGestureRecognizer *hideTouch = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doneButtonTappedHiddenAndSave)];
+    swipeUp.delegate = self;
+//    hideTouch.delegate = self;
+    swipeUp.direction = UISwipeGestureRecognizerDirectionUp;
+//    hideTouch.cancelsTouchesInView = false;
+    [_collectionView addGestureRecognizer:swipeUp];
+//    [_collectionView addGestureRecognizer:hideTouch];
+    self.view.keyboardLayoutGuide.followsUndockedKeyboard = true;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return true;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.2 * NSEC_PER_SEC),
                    dispatch_get_main_queue(), ^{
         _isOpen = true;
@@ -55,7 +63,10 @@ InDetaileNoteTextCellImpl *noteTextCell;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    
+    NoteModel *note = [[NoteModel alloc] initWithNoteID: _data.noteID
+                                                  title:@"(nonnull NSString *)"
+                                                   text:[noteTextCell returnNoteText]];
+    [self->_presenter editNote: note];
     _isOpen = false;
 }
 
@@ -79,35 +90,48 @@ InDetaileNoteTextCellImpl *noteTextCell;
     _doneButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
     [_doneButton setTitle:@"Done" forState: UIControlStateNormal];
     [_doneButton setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
-    [_doneButton addTarget:self action:@selector(doneButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    [_doneButton setAlpha:0];
+    [_doneButton addTarget:self action:@selector(doneButtonTappedHiddenAndSave)
+          forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *doneBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_doneButton];
     self.navigationItem.rightBarButtonItem = doneBarButtonItem;
 }
 
-- (void)doneButtonTapped {
+- (void)doneButtonTappedHiddenAndSave {
     [UIView animateWithDuration:0.2 animations:^{
         [_doneButton setAlpha:0.0];
     } completion:^(BOOL finished) {
         if (finished) {
-            NoteModel *note = [[NoteModel alloc] initWithNoteID: _data.noteID
-                                                          title:@"(nonnull NSString *)"
-                                                           text:[noteTextCell returnNoteText]];
-            
-            
-            [self->_presenter editNote: note];
+//            NoteModel *note = [[NoteModel alloc] initWithNoteID: _data.noteID
+//                                                          title:@"(nonnull NSString *)"
+//                                                           text:[noteTextCell returnNoteText]];
+//            
+//            [self->_presenter editNote: note];
             [self.view endEditing:YES];
-            [self hideKeyboard];
         }
     }];
 }
 
-- (void)hideKeyboard {
-    [self.view endEditing:YES];
+- (void)doneButtonTappedShow {
+    [UIView animateWithDuration:0.2 animations:^{
+        [_doneButton setAlpha:1];
+    } completion:^(BOOL finished) {
+    }];
 }
 
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    [self doneButtonTappedShow];
+    return true;
+}
+
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
+    [self doneButtonTappedHiddenAndSave];
+    return true;
+}
+
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    
     return 2;
 }
 
@@ -139,8 +163,8 @@ InDetaileNoteTextCellImpl *noteTextCell;
             switch (indexPath.row) {
                 case 0:
                     noteTextCell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier
-                                                                     forIndexPath:indexPath];
-                    [noteTextCell setup:_data];
+                                                                             forIndexPath:indexPath];
+                    [noteTextCell setup:_data deledate:self];
                     cell = noteTextCell;
                     break;
             }

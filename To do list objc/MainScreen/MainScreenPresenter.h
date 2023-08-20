@@ -23,7 +23,7 @@
 
 - (instancetype)initWithView: (id <MainScreenViewDelegate>) view;
 
-- (void)addNote:(NSNumber *)noteID title:(NSString *)title;
+- (void)addNote:(NSString *)title;
 - (NSMutableArray *)getNotesData;
 - (NoteModel *)getNote:(NSNumber*)index;
 - (void)receivingFromPersistenStore;

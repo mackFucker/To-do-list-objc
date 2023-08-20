@@ -15,7 +15,8 @@
 #import "MainScreenPresenter.h"
 #import "AddNoteAnimateView.h"
 
-@interface MainScreenViewController : UIViewController<UICollectionViewDataSource,
+@interface MainScreenViewController : UIViewController<
+UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout,
 MainScreenViewDelegate,
 NotifyAboutChanges,

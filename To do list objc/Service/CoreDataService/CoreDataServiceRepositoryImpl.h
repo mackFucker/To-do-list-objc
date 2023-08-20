@@ -27,7 +27,7 @@ typedef NS_ENUM(NSInteger, TypeofChanges) {
 
 @protocol CoreDataServiceRepository <NSObject>
 
-- (void)addNote:(NSNumber *)noteID title:(NSString *)title;
+- (void)addNote:(NSString *)title;
 - (NSMutableArray *)getNotesData;
 - (NoteModel *)getNote:(NSNumber *)index;
 - (void)editNote:(NoteModel *)data;

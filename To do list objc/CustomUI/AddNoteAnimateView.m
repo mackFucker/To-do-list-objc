@@ -28,9 +28,8 @@ UIButton *canselButton;
         canselButton = UIButton.new;
         
         button.layer.cornerRadius = 10;
-        [button setTitle: @"addNote" forState:UIControlStateNormal];
-        button.titleLabel.tintColor = UIColor.grayColor;
-        [button setTitleColor:UIColor.grayColor forState:UIControlStateNormal];
+        [button setTitle: @"Add" forState:UIControlStateNormal];
+        [button setTitleColor:UIColor.tintColor forState:UIControlStateNormal];
         [button setFrame: self.bounds];
         [button addTarget:self action:@selector(setupUIСreatureActivate)
          forControlEvents: UIControlEventTouchUpInside];
@@ -39,7 +38,6 @@ UIButton *canselButton;
         noteNameView.textAlignment = NSTextAlignmentCenter;
         noteNameView.borderStyle = UITextBorderStyleNone;
         noteNameView.font = [UIFont systemFontOfSize:16];
-        noteNameView.textColor = [UIColor blackColor];
         noteNameView.placeholder = @"Enter the name";
         noteNameView.alpha = 0;
         
@@ -50,9 +48,8 @@ UIButton *canselButton;
                forControlEvents: UIControlEventTouchUpInside];
         canselButton.alpha = 0;
         
-        self.backgroundColor = UIColor.lightGrayColor;
         self.layer.cornerRadius = 10;
-        
+        self.layer.shadowOpacity = 0.2;
         [self addSubview:button];
         [self bringSubviewToFront:button];
     }
@@ -85,7 +82,8 @@ UIButton *canselButton;
         CGFloat cancelButtonY = CGRectGetMaxY(self.bounds) / 1.7;
         canselButton.frame = CGRectMake(cancelButtonX, cancelButtonY, cancelButtonWidth, cancelButtonHeight);
         [self addSubview:canselButton];
-        
+        self.backgroundColor = UIColor.systemBackgroundColor;
+
         noteNameView.alpha = 1;
         canselButton.alpha = 1;
     }
@@ -95,7 +93,7 @@ UIButton *canselButton;
 }
 
 -(void)setupUIСreatureNotActivate {
-    CGRect frame = CGRectMake(widht - 110, 60, 100, 40);
+    CGRect frame = CGRectMake(widht - 110, 52, 100, 40);
     noteNameView.text = @"";
   
     [UIView animateWithDuration:0.3
@@ -109,6 +107,7 @@ UIButton *canselButton;
         [self addSubview:button];
         
         self.frame = frame;
+        self.backgroundColor = nil;
         [button setFrame: self.bounds];
     }
                      completion:^(BOOL finished){

@@ -22,9 +22,8 @@ id<CoreDataServiceRepository> coreData;
     return self;
 }
 
-- (void)addNote:(NSNumber*)noteID title:(NSString *)title {
-    [coreData addNote:noteID
-                title:title];
+- (void)addNote:(NSString *)title {
+    [coreData addNote:title];
 }
 
 - (NSMutableArray *)getNotesData {

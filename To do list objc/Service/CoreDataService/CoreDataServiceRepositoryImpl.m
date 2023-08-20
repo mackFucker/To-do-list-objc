@@ -27,7 +27,7 @@ id<NotifyAboutChanges> _delegate;
     _delegate = delegate;
 }
 
-- (void)addNote:(NSNumber *)noteID title:(NSString *)title {
+- (void)addNote:(NSString *)title {
     NSManagedObjectContext *context = [self managedObjectContext];
     NSEntityDescription *entity = [NSEntityDescription entityForName: @"Note"
                                               inManagedObjectContext:context];
@@ -35,7 +35,7 @@ id<NotifyAboutChanges> _delegate;
     NSManagedObject *note = [[NSManagedObject alloc] initWithEntity:entity
                                      insertIntoManagedObjectContext:context];
     
-    [note setValue:noteID forKey:@"id"];
+    [note setValue:((_notesData.count == 0) ? @(0) : @([[_notesData[_notesData.count - 1] valueForKey:@"id"] intValue] + 1)) forKey:@"id"];
     [note setValue:title forKey:@"title"];
     [note setValue:@"" forKey:@"text"];
     
@@ -51,25 +51,30 @@ id<NotifyAboutChanges> _delegate;
 - (NSMutableArray *)getNotesData {
     return _notesData;
 }
-
+//FIXME: какого то хуя всегада меняется последняя ячейка 
 - (NoteModel *)getNote:(NSNumber *)index {
     NSManagedObject *noteData = _notesData[index.intValue];
+    NoteModel *note = [[NoteModel alloc] initWithNoteID:[noteData valueForKey:@"id"]
+                                                  title:[noteData valueForKey:@"title"]
+                                                   text:[noteData valueForKey:@"text"]];
     
-    NoteModel *note = [[NoteModel alloc] initWithNoteID: index
-                                        title:[noteData valueForKey:@"title"]
-                                         text:[noteData valueForKey:@"text"]];
+
     return note;
 }
 - (void)editNote:(NoteModel *)data {
     NSManagedObjectContext *context = [self managedObjectContext];
     
     [_notesData[data.noteID.intValue] setValue:data.text forKey:@"text"];
+    
+    NSNumber *index = [_notesData[data.noteID.intValue] valueForKey:@"id"];
 
     NSError *error = nil;
     if (![context save:&error]) {
         NSLog(@"Could not save. %@, %@", error, error.userInfo);
     }
-    [_delegate notify:@(_notesData.count - 1) type: TypeofChangesEdit];
+    NSLog(@"%@", _notesData);
+
+    [_delegate notify:index type: TypeofChangesEdit];
 }
 
 - (void)deleteNote: (NSNumber *)index {
@@ -82,13 +87,12 @@ id<NotifyAboutChanges> _delegate;
         NSLog(@"Could not save. %@, %@", error, error.userInfo);
     }
     [_notesData removeObjectAtIndex:index.intValue];
-    [_delegate notify:@(_notesData.count - 1) type: TypeofChangesDelete];
+    [_delegate notify:index type: TypeofChangesDelete];
 }
 
 - (void)receivingFromPersistenStore {
     NSManagedObjectContext *context = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
-
     NSError *error = nil;
     NSArray *notes = [context executeFetchRequest:fetchRequest error:&error];
     if (error) {
@@ -106,6 +110,14 @@ id<NotifyAboutChanges> _delegate;
        }
     }];
     _notesData = [notes mutableCopy];
+}
+
+-(void)deleteAllTestFunc:(NSManagedObjectContext*)context {
+    [context deletedObjects];
+    NSError *error = nil;
+    if (![context save:&error]) {
+        NSLog(@"Could not save. %@, %@", error, error.userInfo);
+    }
 }
 
 - (NSManagedObjectContext *)managedObjectContext {
